@@ -1,7 +1,7 @@
 # Platelet Commander
 Make and upgrade blood clots in this submission to Ludum Dare 51 ("Every 10 seconds").
 
-- [Web game on itch.io](https://dandeliondino.itch.io/plateletcommander)
+- [Web game and tutorial screenshots on itch.io](https://dandeliondino.itch.io/plateletcommander)
 - [Ludum Dare submission page](https://ldjam.com/events/ludum-dare/51/platelet-commander)
 - [Github repository](https://github.com/dandeliondino/plateletcommander)
 
@@ -57,4 +57,4 @@ This was a solo jam entry created in 3 days. Art was made by me with exceptions 
 - "Soft Mysterious Harp Loop" from [VWolfdog](https://opengameart.org/content/soft-mysterious-harp-loop) ([CC-BY 3.0](https://creativecommons.org/licenses/by/3.0/))
 
 ## License
-***TODO
+[CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
