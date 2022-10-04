@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/fonts/header.tres" type="DynamicFont" id=1]
+
+[node name="PlateletCommander" type="Label"]
+margin_left = 8.0
+margin_top = 3.0
+margin_right = 353.0
+margin_bottom = 30.0
+custom_colors/font_color = Color( 0.619608, 0.0862745, 0.164706, 1 )
+custom_colors/font_outline_modulate = Color( 0.219608, 0.0862745, 0.192157, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.0862745, 0.192157, 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Platelet Commander"

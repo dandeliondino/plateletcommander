@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://entities/potion_receiver.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/platelet_straight_connected.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/fibrin_crosslink_straight.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/fibrin_straight.png" type="Texture" id=4]
+[ext_resource path="res://entities/platelet/connection.gd" type="Script" id=5]
+
+[node name="ConnectionControl" type="Control"]
+mouse_filter = 2
+script = ExtResource( 5 )
+direction = 6
+
+[node name="BaseConnection" type="TextureRect" parent="."]
+unique_name_in_owner = true
+margin_left = -4.0
+margin_top = 9.0
+margin_right = 4.0
+margin_bottom = 25.0
+mouse_filter = 0
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+powerup_to_receive = 1
+
+[node name="FibrinConnection" type="TextureRect" parent="."]
+unique_name_in_owner = true
+margin_left = -2.0
+margin_top = 11.0
+margin_right = 2.0
+margin_bottom = 41.0
+mouse_filter = 0
+texture = ExtResource( 4 )
+script = ExtResource( 1 )
+powerup_to_receive = 2
+
+[node name="XLinkConnection" type="TextureRect" parent="."]
+unique_name_in_owner = true
+margin_left = -7.0
+margin_top = 36.0
+margin_right = 14.0
+margin_bottom = 50.0
+rect_rotation = -90.0
+mouse_filter = 2
+texture = ExtResource( 3 )

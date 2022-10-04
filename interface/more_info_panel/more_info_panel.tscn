@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/fonts/normal_darkoutline.tres" type="DynamicFont" id=1]
+[ext_resource path="res://interface/more_info_panel/more_info_panel.gd" type="Script" id=4]
+[ext_resource path="res://assets/fonts/kenney_space.tres" type="DynamicFontData" id=5]
+[ext_resource path="res://interface/formatted_label.tscn" type="PackedScene" id=6]
+[ext_resource path="res://interface/menu_header_label.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 8
+outline_size = 1
+font_data = ExtResource( 5 )
+
+[node name="MoreInfoPanel" type="PanelContainer"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 200 )
+theme_type_variation = "tooltipbackground"
+script = ExtResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 198.0
+margin_bottom = 198.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 188.0
+margin_bottom = 188.0
+
+[node name="TitleLabel" parent="MarginContainer/VBoxContainer" instance=ExtResource( 7 )]
+unique_name_in_owner = true
+margin_right = 180.0
+custom_colors/font_color = Color( 0.745098, 0.14902, 0.2, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "PLATELETS"
+autowrap = true
+uppercase = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 18.0
+margin_right = 180.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 162.0
+margin_bottom = 266.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+
+[node name="TextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" instance=ExtResource( 6 )]
+margin_left = 4.0
+margin_right = 158.0
+margin_bottom = 266.0
+size_flags_vertical = 3
+custom_colors/font_color_shadow = Color( 0.219608, 0.0862745, 0.192157, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_text = "Here is some [color=yellow]text[/color]. And interesting facts about some other stuff. Here are some more facts.
+
+Here is some [color=yellow]text[/color]. And interesting facts about some other stuff. Here are some more facts.
+
+Here is some [color=yellow]text[/color]. And interesting facts about some other stuff. Here are some more facts.
+
+Here is some [color=yellow]text[/color]. And interesting facts about some other stuff. Here are some more facts."
+text = "Here is some text. And interesting facts about some other stuff. Here are some more facts.
+
+Here is some text. And interesting facts about some other stuff. Here are some more facts.
+
+Here is some text. And interesting facts about some other stuff. Here are some more facts.
+
+Here is some text. And interesting facts about some other stuff. Here are some more facts."
+
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_left = 68.0
+margin_top = 154.0
+margin_right = 111.0
+margin_bottom = 180.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "CLOSE"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

@@ -1,0 +1,29 @@
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# Ignore addons
+script_templates/
+addons/*
+!addons/dd_utils
+ink-engine-runtime.dll
+
+# Ignore assets
+assets/*
+# ... except sprites I created by hand
+!assets/sprites
+!assets/tilesets
+
+# Ignore vscode
+*.code-workspace
+
+# Ignore Aseprite
+*.aseprite

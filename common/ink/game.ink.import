@@ -1,0 +1,15 @@
+[remap]
+
+importer="ink"
+type="Resource"
+path="res://.import/game.ink-b3d279fd495644b9a114cedcb6f6c30e.res"
+
+[deps]
+
+source_file="res://common/ink/game.ink"
+dest_files=[ "res://.import/game.ink-b3d279fd495644b9a114cedcb6f6c30e.res" ]
+
+[params]
+
+is_master_file=true
+compress=true

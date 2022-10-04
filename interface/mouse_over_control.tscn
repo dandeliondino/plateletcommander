@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://interface/mouse_over_control.gd" type="Script" id=1]
+
+[node name="MouseOverControl" type="Control"]
+margin_top = 52.0
+margin_right = 72.0
+margin_bottom = 124.0
+script = ExtResource( 1 )

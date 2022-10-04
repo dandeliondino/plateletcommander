@@ -1,0 +1,205 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "AStarTileMap",
+"language": "GDScript",
+"path": "res://interface/navmap/astar_tilemap.gd"
+}, {
+"base": "ColorRect",
+"class": "ColorTile",
+"language": "GDScript",
+"path": "res://addons/color-palette/ColorTile.gd"
+}, {
+"base": "Node",
+"class": "Connection_Receiver",
+"language": "GDScript",
+"path": "res://entities/connection_receiver.gd"
+}, {
+"base": "Entity",
+"class": "Damaged_Endothelium_Entity",
+"language": "GDScript",
+"path": "res://entities/damaged_endothelium/damaged_endothelium_entity.gd"
+}, {
+"base": "Node2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://entities/entity.gd"
+}, {
+"base": "Container",
+"class": "FlexGridContainer",
+"language": "GDScript",
+"path": "res://addons/color-palette/utilities/FlexGridContainer.gd"
+}, {
+"base": "ResourceScene",
+"class": "Level",
+"language": "GDScript",
+"path": "res://levels/level.gd"
+}, {
+"base": "Control",
+"class": "MouseOverControl",
+"language": "GDScript",
+"path": "res://interface/mouse_over_control.gd"
+}, {
+"base": "TileMap",
+"class": "NavMap",
+"language": "GDScript",
+"path": "res://interface/navmap/navmap.gd"
+}, {
+"base": "Reference",
+"class": "Palette",
+"language": "GDScript",
+"path": "res://addons/color-palette/Palette.gd"
+}, {
+"base": "Reference",
+"class": "PaletteImporter",
+"language": "GDScript",
+"path": "res://addons/color-palette/PaletteImporter.gd"
+}, {
+"base": "Entity",
+"class": "Platelet_Entity",
+"language": "GDScript",
+"path": "res://entities/platelet/platelet_entity.gd"
+}, {
+"base": "Entity",
+"class": "Powerup_Entity",
+"language": "GDScript",
+"path": "res://entities/powerup/powerup_entity.gd"
+}, {
+"base": "Entity",
+"class": "RBC_Entity",
+"language": "GDScript",
+"path": "res://entities/rbc/rbc_entity.gd"
+}, {
+"base": "Node",
+"class": "ResourceScene",
+"language": "GDScript",
+"path": "res://common/resource_scene.gd"
+}, {
+"base": "Node",
+"class": "Settings",
+"language": "GDScript",
+"path": "res://common/settings.gd"
+}, {
+"base": "Node",
+"class": "ViewportPositionConverter",
+"language": "GDScript",
+"path": "res://addons/dd_utils/viewport_position_converter.gd"
+} ]
+_global_script_class_icons={
+"AStarTileMap": "",
+"ColorTile": "",
+"Connection_Receiver": "",
+"Damaged_Endothelium_Entity": "",
+"Entity": "",
+"FlexGridContainer": "res://addons/color-palette/utilities/FlexGridContainerIcon.png",
+"Level": "",
+"MouseOverControl": "",
+"NavMap": "",
+"Palette": "",
+"PaletteImporter": "",
+"Platelet_Entity": "",
+"Powerup_Entity": "",
+"RBC_Entity": "",
+"ResourceScene": "",
+"Settings": "",
+"ViewportPositionConverter": ""
+}
+
+[application]
+
+config/name="ld51"
+run/main_scene="res://main_scene.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Game="*res://common/singletons/game.gd"
+Events="*res://common/singletons/events.gd"
+Utils="*res://addons/dd_utils/utils.gd"
+Dprint="*res://common/debug/dprint.gd"
+IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+gdscript/warnings/return_value_discarded=false
+
+[display]
+
+window/integer_resolution_handler/base_width=640
+window/integer_resolution_handler/base_height=360
+window/size/width=640
+window/size/height=360
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/color-palette/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg", "res://addons/paulloz.ink/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+theme/custom="res://interface/main_theme.tres"
+theme/custom_font="res://assets/fonts/normal_font.tres"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d": false,
+"flags/anisotropic": false,
+"flags/filter": false,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[ink]
+
+inklecate_path="C:\\Programs\\inklecate\\inklecate.exe"
+
+[input]
+
+click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[mono]
+
+project/assembly_name="ld51"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+2d/snapping/use_gpu_pixel_snap=true
+environment/default_clear_color=Color( 0.498039, 0.0235294, 0.133333, 1 )
+environment/default_environment="res://default_env.tres"

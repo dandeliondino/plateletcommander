@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://entities/megakaryocyte.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/header.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/controls/megakaryocyte_panel.png" type="Texture" id=3]
+[ext_resource path="res://interface/mouse_over_control.tscn" type="PackedScene" id=4]
+
+[node name="MegakaryocytePanel" type="TextureRect"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -124.0
+margin_right = 124.0
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+
+[node name="MouseOverControl" parent="." instance=ExtResource( 4 )]
+ink_path = "megakaryocyte"
+
+[node name="BuddingSpot" type="Position2D" parent="." groups=["budding_spot"]]
+position = Vector2( 23, 19 )
+
+[node name="BuddingSpot2" type="Position2D" parent="." groups=["budding_spot"]]
+position = Vector2( 58, 24 )
+
+[node name="BuddingSpot3" type="Position2D" parent="." groups=["budding_spot"]]
+position = Vector2( 89, 25 )
+
+[node name="BuddingSpot4" type="Position2D" parent="." groups=["budding_spot"]]
+position = Vector2( 97, 38 )
+
+[node name="BuddingSpot5" type="Position2D" parent="." groups=["budding_spot"]]
+position = Vector2( 68, 68 )
+
+[node name="BuddingSpot6" type="Position2D" parent="." groups=["budding_spot"]]
+position = Vector2( 102, 100 )
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 10.0
+autostart = true
+
+[node name="TimerLabel" type="Label" parent="."]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -35.0
+margin_right = -24.0
+margin_bottom = -8.0
+custom_colors/font_color = Color( 0.956863, 0.705882, 0.105882, 1 )
+custom_colors/font_outline_modulate = Color( 0.219608, 0.0862745, 0.192157, 1 )
+custom_colors/font_color_shadow = Color( 0.219608, 0.0862745, 0.192157, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "10"
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

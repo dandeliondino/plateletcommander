@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://interface/about_menu/about_menu.gd" type="Script" id=1]
+[ext_resource path="res://interface/menu_header_label.tscn" type="PackedScene" id=2]
+
+[node name="AboutMenu" type="PanelContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 200 )
+script = ExtResource( 1 )
+readme_path = "res://README.md"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 293.0
+margin_bottom = 193.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 283.0
+margin_bottom = 183.0
+
+[node name="Label" parent="MarginContainer/VBoxContainer" instance=ExtResource( 2 )]
+text = "ABOUT"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 279.0
+margin_bottom = 149.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+margin_right = 261.0
+margin_bottom = 159.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="CreditContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 257.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 8
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CreditContainer"]
+margin_right = 253.0
+margin_bottom = 13.0
+text = "Created by: dandeliondino (dandeliondino.itch.io)"
+autowrap = true
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CreditContainer"]
+margin_top = 21.0
+margin_right = 253.0
+margin_bottom = 50.0
+text = "Source: github.com/dandeliondino/plateletcommander"
+autowrap = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer/CreditContainer"]
+margin_top = 58.0
+margin_right = 253.0
+margin_bottom = 151.0
+text = "This was a solo jam entry in Ludum Dare 51 (Every 10 seconds). Art was made by me with exceptions noted. Incredibly grateful to the organizers and everyone who has donated their time and resources to making game dev accessible."
+autowrap = true
+
+[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 153.0
+margin_right = 279.0
+margin_bottom = 179.0
+text = "CLOSE"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

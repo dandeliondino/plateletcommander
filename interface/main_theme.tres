@@ -1,0 +1,65 @@
+[gd_resource type="Theme" load_steps=15 format=2]
+
+[ext_resource path="res://assets/controls/darkredframe_stylebox.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/controls/button_hover.tres" type="StyleBox" id=2]
+[ext_resource path="res://assets/controls/button_normal.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/controls/button_pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/fonts/normal_darkoutline.tres" type="DynamicFont" id=5]
+[ext_resource path="res://assets/controls/darkredyellowframe_stylebox.tres" type="StyleBox" id=6]
+[ext_resource path="res://assets/controls/pinkfilledframe_stylebox.tres" type="StyleBox" id=7]
+[ext_resource path="res://assets/fonts/kenney_space.tres" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/controls/popup_panel_stylebox.tres" type="StyleBox" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+outline_size = 1
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+border_width_left = 6
+border_width_right = 6
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[resource]
+Button/colors/font_color = Color( 1, 0.854902, 0.909804, 1 )
+Button/colors/font_color_disabled = Color( 0.827451, 0.384314, 0.435294, 1 )
+Button/colors/font_color_focus = Color( 1, 0.854902, 0.909804, 1 )
+Button/colors/font_color_hover = Color( 1, 0.854902, 0.909804, 1 )
+Button/colors/font_color_pressed = Color( 1, 0.854902, 0.909804, 1 )
+Button/fonts/font = ExtResource( 5 )
+Button/styles/disabled = ExtResource( 3 )
+Button/styles/focus = SubResource( 1 )
+Button/styles/hover = ExtResource( 2 )
+Button/styles/normal = ExtResource( 3 )
+Button/styles/pressed = ExtResource( 4 )
+Label/colors/font_color = Color( 1, 0.854902, 0.909804, 1 )
+Label/colors/font_color_shadow = Color( 0.219608, 0.0862745, 0.192157, 1 )
+Label/fonts/font = ExtResource( 5 )
+PanelContainer/styles/panel = ExtResource( 3 )
+RichTextLabel/colors/default_color = Color( 1, 0.854902, 0.909804, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0.219608, 0.0862745, 0.192157, 1 )
+RichTextLabel/fonts/normal_font = ExtResource( 5 )
+RichTextLabel/styles/focus = SubResource( 4 )
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/decrement_pressed = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/icons/increment_pressed = null
+VScrollBar/styles/grabber = ExtResource( 1 )
+VScrollBar/styles/grabber_highlight = ExtResource( 6 )
+VScrollBar/styles/grabber_pressed = ExtResource( 1 )
+VScrollBar/styles/scroll = ExtResource( 7 )
+VScrollBar/styles/scroll_focus = SubResource( 3 )
+menuheader/base_type = "Label"
+menuheader/fonts/font = SubResource( 5 )
+minimalscrollbar/base_type = "VScrollBar"
+minimalscrollbar/styles/scroll = SubResource( 6 )
+tooltipbackground/base_type = "PanelContainer"
+tooltipbackground/styles/panel = ExtResource( 9 )

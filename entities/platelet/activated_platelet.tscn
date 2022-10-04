@@ -1,0 +1,174 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/sprites/platelet_activated.png" type="Texture" id=1]
+[ext_resource path="res://entities/platelet/activated_platelet.gd" type="Script" id=2]
+[ext_resource path="res://entities/platelet/connection_control.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/platelet_diagonal_connected.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/fibrin_diagonal.png" type="Texture" id=5]
+[ext_resource path="res://entities/secretion_nodes/fibrin_powerup_secretor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/secretion_nodes/xlink_powerup_secretor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://entities/platelet_connector.gd" type="Script" id=8]
+[ext_resource path="res://entities/secretion_nodes/activation_powerup_secretor.tscn" type="PackedScene" id=9]
+
+[node name="ActivatedPlatelet" type="Node2D"]
+script = ExtResource( 2 )
+ink_path = "activated_platelet"
+can_hover = true
+can_select = true
+can_move = true
+can_connect = true
+_can_connect_left = true
+_can_connect_up_left = true
+_can_connect_up = true
+_can_connect_up_right = true
+_can_connect_right = true
+_can_connect_down_right = true
+_can_connect_down = true
+_can_connect_down_left = true
+
+[node name="Sprite" type="Sprite" parent="."]
+unique_name_in_owner = true
+texture = ExtResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+unique_name_in_owner = true
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+script = ExtResource( 8 )
+
+[node name="ConnectionContainer" type="Control" parent="."]
+unique_name_in_owner = true
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 2
+
+[node name="ConnectionControlLeft" parent="ConnectionContainer" instance=ExtResource( 3 )]
+rect_rotation = 90.0
+direction = 0
+
+[node name="ConnectionControlLeftUp" parent="ConnectionContainer" instance=ExtResource( 3 )]
+rect_rotation = 90.0
+direction = 1
+
+[node name="BaseConnection" parent="ConnectionContainer/ConnectionControlLeftUp" index="0"]
+margin_left = -16.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 21.0
+texture = ExtResource( 4 )
+
+[node name="FibrinConnection" parent="ConnectionContainer/ConnectionControlLeftUp" index="1"]
+margin_left = -30.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = 37.0
+texture = ExtResource( 5 )
+
+[node name="XLinkConnection" parent="ConnectionContainer/ConnectionControlLeftUp" index="2"]
+margin_left = -30.0
+margin_top = 21.0
+margin_right = -9.0
+margin_bottom = 35.0
+rect_rotation = -45.0
+
+[node name="ConnectionControlUp" parent="ConnectionContainer" instance=ExtResource( 3 )]
+rect_rotation = -180.0
+direction = 2
+
+[node name="ConnectionControlRightUp" parent="ConnectionContainer" instance=ExtResource( 3 )]
+rect_rotation = 180.0
+direction = 3
+
+[node name="BaseConnection" parent="ConnectionContainer/ConnectionControlRightUp" index="0"]
+margin_left = -16.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 21.0
+texture = ExtResource( 4 )
+
+[node name="FibrinConnection" parent="ConnectionContainer/ConnectionControlRightUp" index="1"]
+margin_left = -30.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = 37.0
+texture = ExtResource( 5 )
+
+[node name="XLinkConnection" parent="ConnectionContainer/ConnectionControlRightUp" index="2"]
+margin_left = -30.0
+margin_top = 21.0
+margin_right = -9.0
+margin_bottom = 35.0
+rect_rotation = -45.0
+
+[node name="ConnectionControlRight" parent="ConnectionContainer" instance=ExtResource( 3 )]
+rect_rotation = -90.0
+direction = 4
+
+[node name="ConnectionControlRightDown" parent="ConnectionContainer" instance=ExtResource( 3 )]
+rect_rotation = -90.0
+direction = 5
+
+[node name="BaseConnection" parent="ConnectionContainer/ConnectionControlRightDown" index="0"]
+margin_left = -16.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 21.0
+texture = ExtResource( 4 )
+
+[node name="FibrinConnection" parent="ConnectionContainer/ConnectionControlRightDown" index="1"]
+margin_left = -30.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = 37.0
+texture = ExtResource( 5 )
+
+[node name="XLinkConnection" parent="ConnectionContainer/ConnectionControlRightDown" index="2"]
+margin_left = -30.0
+margin_top = 21.0
+margin_right = -9.0
+margin_bottom = 35.0
+rect_rotation = -45.0
+
+[node name="ConnectionControlDown" parent="ConnectionContainer" instance=ExtResource( 3 )]
+
+[node name="ConnectionControlLeftDown" parent="ConnectionContainer" instance=ExtResource( 3 )]
+direction = 7
+
+[node name="BaseConnection" parent="ConnectionContainer/ConnectionControlLeftDown" index="0"]
+margin_left = -16.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 21.0
+texture = ExtResource( 4 )
+
+[node name="FibrinConnection" parent="ConnectionContainer/ConnectionControlLeftDown" index="1"]
+margin_left = -30.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = 37.0
+texture = ExtResource( 5 )
+
+[node name="XLinkConnection" parent="ConnectionContainer/ConnectionControlLeftDown" index="2"]
+margin_left = -30.0
+margin_top = 21.0
+margin_right = -9.0
+margin_bottom = 35.0
+rect_rotation = -45.0
+
+[node name="ActivationPowerupSecretor" parent="." instance=ExtResource( 9 )]
+unique_name_in_owner = true
+
+[node name="FibrinPowerupSecretor" parent="." instance=ExtResource( 6 )]
+unique_name_in_owner = true
+active = false
+
+[node name="XLinkPowerupSecretor" parent="." instance=ExtResource( 7 )]
+unique_name_in_owner = true
+active = false
+
+[editable path="ConnectionContainer/ConnectionControlLeftUp"]
+[editable path="ConnectionContainer/ConnectionControlRightUp"]
+[editable path="ConnectionContainer/ConnectionControlRightDown"]
+[editable path="ConnectionContainer/ConnectionControlLeftDown"]
