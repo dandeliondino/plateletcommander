@@ -7,7 +7,6 @@
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 2 )
-ink_path = "budding_platelet"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -8.0
