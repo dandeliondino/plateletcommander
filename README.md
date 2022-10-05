@@ -49,7 +49,7 @@ Recommended addons:
 # Credits
 This was a solo jam entry created in 3 days. Art was made by me with exceptions noted (certain UI elements). Incredibly grateful to the organizers of the jam and everyone who has donated their time and resources to making game dev accessible to all of us.
 
-- Created with [Godot Engine](https://godotengine.org/) and [Ink Engine](https://www.inklestudios.com/ink/)
+- Created with [Godot Engine](https://godotengine.org/) and [Ink Engine](https://www.inklestudios.com/ink/), integrated with paulloz's [godot-ink](https://github.com/paulloz/godot-ink)
 - M5x7 font by [Daniel Linssen](https://managore.itch.io/m5x7) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))
 - Kenney Space font by [Kenney](https://www.kenney.nl/assets/kenney-fonts) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))
 - Emotes adapted from [Kenney](https://www.kenney.nl/assets/) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/))
