@@ -42,7 +42,6 @@ const PLATELET_GROUP := "platelets"
 const POWERUP_GROUP := "powerups"
 const DAMAGED_ENDOTHELIUM_GROUP := "damaged_endothelium"
 const RBC_GROUP := "rbcs"
-const OFF_SCREEN_GROUP := "off_screen_area"
 const CONNECTION_GROUP := "connection_controls"
 
 

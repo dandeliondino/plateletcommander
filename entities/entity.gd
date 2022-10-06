@@ -158,6 +158,8 @@ func set_clotted(value : bool) -> void:
 
 # READY VARIABLES
 var tween : SceneTreeTween
+
+onready var visibility_notifier := VisibilityNotifier2D.new()
 onready var sprite := $"%Sprite"
 onready var control := $"%Control"
 
@@ -167,6 +169,10 @@ func _ready() -> void:
 	control.connect("mouse_entered", self, "_on_mouse_entered")
 	control.connect("mouse_exited", self, "_on_mouse_exited")
 	control.connect("gui_input", self, "_on_input_event")
+	
+	add_child(visibility_notifier)
+	visibility_notifier.connect("screen_exited", self, "_on_screen_exited")
+	
 	control.rect_size = Vector2(32, 32)
 	control.rect_position = Vector2(-16, -16)
 	
@@ -409,8 +415,7 @@ func _on_input_event(event: InputEvent) -> void:
 func _on_Events_entity_selected(entity) -> void:
 	self.selected = (entity == self)
 
-
-func _on_VisibilityNotifier2D_screen_exited() -> void:
-	Dprint.info("%s - screen exited, queue_free()" % name, "ENTITY_MOVEMENT")
+func _on_screen_exited() -> void:
+	Dprint.info("%s _on_screen_exited() -> queue_free()" % name, "ENTITY_MOVEMENT")
 	queue_free()
-	
+

@@ -37,7 +37,7 @@ autoplay = true
 
 [node name="Settings" type="Node2D" parent="."]
 script = ExtResource( 1 )
-passive_movement_speed = 2.0
+passive_movement_speed = 0.25
 show_navmap = true
 fade_to_game_time = 0.5
 level_directory = "res://levels/scenes"

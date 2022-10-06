@@ -1,19 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://interface/navmap/navmap.gd" type="Script" id=1]
 [ext_resource path="res://assets/tilesets/navmap_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://levels/level.gd" type="Script" id=3]
 [ext_resource path="res://assets/tilesets/endothelium_tileset.tres" type="TileSet" id=4]
 [ext_resource path="res://entities/rbc/rbc_spawner.tscn" type="PackedScene" id=7]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 65, 113 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 128, 29 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 32, 44 )
 
 [node name="NewGameLevel" type="Node2D"]
 script = ExtResource( 3 )
@@ -37,28 +28,3 @@ unique_name_in_owner = true
 
 [node name="RBCSpawner" parent="Entities" instance=ExtResource( 7 )]
 position = Vector2( 304, 144 )
-
-[node name="OffScreenArea" type="Area2D" parent="." groups=["off_screen_area"]]
-position = Vector2( 680, 40 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OffScreenArea"]
-position = Vector2( 440, 104 )
-shape = SubResource( 1 )
-
-[node name="OffScreenArea2" type="Area2D" parent="." groups=["off_screen_area"]]
-position = Vector2( 264, -48 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OffScreenArea2"]
-position = Vector2( 88, 19 )
-shape = SubResource( 2 )
-
-[node name="OffScreenArea3" type="Area2D" parent="." groups=["off_screen_area"]]
-position = Vector2( 72, -16 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OffScreenArea3"]
-position = Vector2( 120, 4 )
-shape = SubResource( 3 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="OffScreenArea3"]
-position = Vector2( 440, 8 )
-shape = SubResource( 3 )

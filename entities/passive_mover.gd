@@ -27,7 +27,6 @@ func _setup_timer() -> void:
 	
 
 func try_to_move() -> void:
-	print("try_to_move()")
 	var target_cell = _get_next_target_cell()
 	if target_cell == Game.INVALID_CELL:
 		move_attempts += 1
@@ -70,6 +69,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
-	if area.is_in_group(Game.OFF_SCREEN_GROUP):
-		entity.remove_from_map()
+	pass
+#	if area.is_in_group(Game.OFF_SCREEN_GROUP):
+#		entity.remove_from_map()
 
