@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://common/settings.gd" type="Script" id=1]
 [ext_resource path="res://common/managers/ink_manager.gd" type="Script" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://assets/sprites/nav_target.png" type="Texture" id=15]
 [ext_resource path="res://interface/tooltip/tooltip_container.gd" type="Script" id=16]
 [ext_resource path="res://assets/sprites/fibrin_potion.png" type="Texture" id=17]
-[ext_resource path="res://entities/megakaryocyte_panel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/sprites/activation_potion.png" type="Texture" id=19]
 [ext_resource path="res://interface/more_info_panel/more_info_panel.tscn" type="PackedScene" id=20]
 [ext_resource path="res://interface/game_background_header.tscn" type="PackedScene" id=21]
@@ -39,8 +38,8 @@ autoplay = true
 [node name="Settings" type="Node2D" parent="."]
 script = ExtResource( 1 )
 passive_movement_speed = 2.0
-fade_to_black_time = 0.25
-fade_to_game_time = 0.25
+show_navmap = true
+fade_to_game_time = 0.5
 level_directory = "res://levels/scenes"
 new_game_level = "res://levels/scenes/new_game_level.tscn"
 
@@ -68,8 +67,10 @@ script = ExtResource( 14 )
 unique_name_in_owner = true
 script = ExtResource( 10 )
 
-[node name="World" type="Node2D" parent="WorldLayer"]
+[node name="World" type="Control" parent="WorldLayer"]
 unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="NavTarget" type="Sprite" parent="WorldLayer"]
 unique_name_in_owner = true
@@ -93,26 +94,36 @@ script = ExtResource( 27 )
 unique_name_in_owner = true
 script = ExtResource( 9 )
 
-[node name="VBoxContainer" type="HBoxContainer" parent="HUDLayer"]
+[node name="MenuButton" type="Button" parent="HUDLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -280.0
-margin_bottom = 58.0
+margin_left = -39.0
+margin_bottom = 26.0
+size_flags_vertical = 0
+text = "Menu"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="HUDLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -221.0
+margin_top = -40.0
 mouse_filter = 2
 custom_constants/separation = 12
 
-[node name="HBoxContainer" type="VBoxContainer" parent="HUDLayer/VBoxContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="HUDLayer/ScoreContainer"]
 margin_right = 94.0
-margin_bottom = 58.0
+margin_bottom = 40.0
 mouse_filter = 2
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HUDLayer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer"]
 margin_right = 94.0
 margin_bottom = 13.0
 text = "Connections Made:"
 
-[node name="TotalConnectionsLabel" type="Label" parent="HUDLayer/VBoxContainer/HBoxContainer"]
+[node name="TotalConnectionsLabel" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_top = 13.0
 margin_right = 94.0
@@ -125,19 +136,19 @@ custom_fonts/font = ExtResource( 28 )
 text = "150"
 align = 1
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="HUDLayer/VBoxContainer"]
+[node name="HBoxContainer2" type="VBoxContainer" parent="HUDLayer/ScoreContainer"]
 margin_left = 106.0
 margin_right = 221.0
-margin_bottom = 58.0
+margin_bottom = 40.0
 mouse_filter = 2
 custom_constants/separation = 0
 
-[node name="Label2" type="Label" parent="HUDLayer/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer2"]
 margin_right = 115.0
 margin_bottom = 13.0
 text = "Connections Upgraded:"
 
-[node name="ConnectionsUpgradedLabel" type="Label" parent="HUDLayer/VBoxContainer/HBoxContainer2"]
+[node name="ConnectionsUpgradedLabel" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer2"]
 unique_name_in_owner = true
 margin_top = 13.0
 margin_right = 115.0
@@ -153,61 +164,50 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="MenuButton" type="Button" parent="HUDLayer/VBoxContainer"]
-margin_left = 233.0
-margin_right = 272.0
-margin_bottom = 26.0
-size_flags_vertical = 0
-text = "Menu"
-
 [node name="PlateletCommander" parent="HUDLayer" instance=ExtResource( 21 )]
 
-[node name="MarginContainer" type="MarginContainer" parent="HUDLayer"]
+[node name="InventoryContainer" type="MarginContainer" parent="HUDLayer"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_top = -70.0
-margin_right = 231.0
+margin_right = 156.0
 custom_constants/margin_bottom = 12
 
-[node name="PanelContainer" type="PanelContainer" parent="HUDLayer/MarginContainer"]
-margin_right = 280.0
+[node name="PanelContainer" type="PanelContainer" parent="HUDLayer/InventoryContainer"]
+margin_right = 156.0
 margin_bottom = 58.0
 rect_min_size = Vector2( 64, 32 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/MarginContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/InventoryContainer/PanelContainer"]
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 273.0
+margin_right = 149.0
 margin_bottom = 51.0
-custom_constants/margin_left = 124
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/MarginContainer/PanelContainer/MarginContainer"]
-margin_left = 124.0
-margin_right = 267.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer"]
+margin_right = 143.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 
-[node name="ActivateButton" parent="HUDLayer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
+[node name="ActivateButton" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
 powerup_texture = ExtResource( 19 )
 ink_path = "activation_potion"
 
-[node name="FibrinButton" parent="HUDLayer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
+[node name="FibrinButton" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
 margin_left = 49.0
 margin_right = 94.0
 powerup_id = 1
 powerup_texture = ExtResource( 17 )
 ink_path = "fibrin_potion"
 
-[node name="XLinkButton" parent="HUDLayer/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
+[node name="XLinkButton" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
 margin_left = 98.0
 margin_right = 143.0
 powerup_id = 2
 powerup_texture = ExtResource( 24 )
 ink_path = "xlink_potion"
-
-[node name="MegakaryocytePanel" parent="HUDLayer" instance=ExtResource( 18 )]
 
 [node name="MoreInfoContainer" type="Control" parent="HUDLayer"]
 anchor_right = 1.0
@@ -227,7 +227,6 @@ script = ExtResource( 16 )
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
 unique_name_in_owner = true
-visible = false
 script = ExtResource( 7 )
 
 [node name="GameBackground" parent="MenuLayer" instance=ExtResource( 22 )]
@@ -266,4 +265,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.219608, 0.0862745, 0.192157, 1 )
 
-[connection signal="pressed" from="HUDLayer/VBoxContainer/MenuButton" to="HUDLayer" method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="HUDLayer/MenuButton" to="HUDLayer" method="_on_MenuButton_pressed"]

@@ -176,7 +176,11 @@ func _ready() -> void:
 		yield(Events, "game_state_changed")
 	else:
 		yield(get_tree(),"idle_frame")
-	update_cell()
+	
+	if cell:
+		global_position = Game.navmap.get_position_at_cell(cell)
+	else:
+		update_cell()
 
 
 func _on_focus_gained() -> void:
@@ -309,6 +313,7 @@ func replace_with(packed_scene) -> void:
 
 
 func move_to_cell(target_cell : Vector2) -> void:
+	Dprint.info("%s - move_to_cell(%s)" % [name, target_cell], "ENTITY_MOVEMENT")
 	self.cell = target_cell # do this before moving, to release current cell and reserve target cell
 	var pos = Game.navmap.get_position_at_cell(target_cell)
 	if tween:
@@ -316,6 +321,19 @@ func move_to_cell(target_cell : Vector2) -> void:
 	tween = create_tween()
 	tween.tween_property(self, "global_position", pos, Game.settings.passive_movement_speed)
 	tween.tween_callback(self, "emit_signal", ["movement_completed"])
+
+
+func set_position_to_current_cell() -> void:
+	Dprint.info("%s - set_position_to_current_cell()" % [name], "ENTITY_MOVEMENT")
+	move_to_cell_immediately(cell)
+
+func move_to_cell_immediately(target_cell : Vector2) -> void:
+	Dprint.info("%s - move_to_cell_immediately(%s)" % [name, target_cell], "ENTITY_MOVEMENT")
+	if tween:
+		tween.kill()
+	self.cell = target_cell
+	print("navmap pos: %s" % Game.navmap.get_position_at_cell(target_cell))
+	global_position = Game.navmap.get_position_at_cell(target_cell)
 
 
 func move_along_path(nav_path_positions : PoolVector2Array) -> void:
@@ -390,3 +408,9 @@ func _on_input_event(event: InputEvent) -> void:
 
 func _on_Events_entity_selected(entity) -> void:
 	self.selected = (entity == self)
+
+
+func _on_VisibilityNotifier2D_screen_exited() -> void:
+	Dprint.info("%s - screen exited, queue_free()" % name, "ENTITY_MOVEMENT")
+	queue_free()
+	

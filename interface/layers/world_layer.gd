@@ -30,9 +30,10 @@ var selected_path_positions : PoolVector2Array
 
 onready var navTarget := $"%NavTarget"
 onready var navLine := $"%NavLine"
-
+onready var world := $"%World"
 
 func _ready() -> void:
+	Game.world = world
 	Events.connect("entity_selected", self, "_on_Events_entity_selected")
 	
 

@@ -29,7 +29,7 @@ onready var astar_tilemap : AStarTileMap
 func _ready():
 	astar_tilemap = AStarTileMap.new(nav_cells, get_used_rect())
 	if Game.settings.show_navmap:
-		self.modulate.a = 0.5
+		self.modulate.a = 1.0
 		visible = true
 	else:
 		visible = false
@@ -78,8 +78,6 @@ func get_cell_at_node(node : Node2D) -> Vector2:
 func get_cell_at_position(pos : Vector2) -> Vector2:
 	var local_pos = to_local(pos)
 	var cell = world_to_map(local_pos)
-#	if !nav_cells.has(cell):
-#		return Game.INVALID_CELL
 	return cell	
 
 
@@ -134,6 +132,7 @@ func get_position_at_cell(cell : Vector2) -> Vector2:
 	var top_left_pos := map_to_world(cell)
 	var center_pos := top_left_pos + cell_size/2
 	var global_pos := to_global(center_pos)
+#	Dprint.info("get_position_at_cell: %s -> %s" % [cell, global_pos])
 	return global_pos
 
 
@@ -161,7 +160,13 @@ func is_cell_occupied(cell : Vector2) -> bool:
 	return occupied_cells.has(cell)
 
 
-
+func reset_map() -> void:
+	astar_tilemap.queue_free()
+	astar_tilemap = AStarTileMap.new(nav_cells, get_used_rect())
+	for entity in get_tree().get_nodes_in_group(Game.ENTITY_GROUP):
+		entity.update_cell()
+	_update_occupied_cells()
+	
 
 
 # PRIVATE FUNCTIONS

@@ -21,14 +21,18 @@ func _ready() -> void:
 
 
 func secrete_entity() -> void:
+	
 	var target_cell = _get_cell()
 	if target_cell == Game.INVALID_CELL:
 		Dprint.info("No valid cells available to secrete")
 		return
+	Dprint.info("Entity cell: %s, Target cell: %s" % [entity.cell, target_cell])
 	var secreted_entity : Entity = entity_to_secrete.instance()
-	secreted_entity.global_position = Game.navmap.get_position_at_cell(target_cell)
+	
+	secreted_entity.cell = target_cell
 	Game.entity_container.add_child(secreted_entity)
-
+	yield(get_tree(), "idle_frame")
+	Dprint.info("Entity pos: %s, Target pos: %s" % [entity.global_position, secreted_entity.global_position])
 
 func activate() -> void:
 	active = true

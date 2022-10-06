@@ -20,7 +20,7 @@ margin_right = 16.0
 margin_bottom = 16.0
 
 [node name="RBCSecretor" parent="." instance=ExtResource( 3 )]
-min_time = 5.0
-max_time = 15.0
+min_time = 2.0
+max_time = 5.0
 limit_direction = true
 direction_to_secrete = 4

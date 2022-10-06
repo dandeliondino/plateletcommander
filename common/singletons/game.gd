@@ -32,6 +32,7 @@ var tooltip
 var settings
 
 var ink_manager
+var world
 
 
 # GROUPS

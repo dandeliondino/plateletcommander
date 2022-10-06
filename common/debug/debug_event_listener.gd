@@ -38,7 +38,7 @@ var event_signals = [
 "entity_selected",
 #"entity_focus_gained",
 #"entity_focus_lost",
-#"entity_cell_changed",
+"entity_cell_changed",
 
 ]
 

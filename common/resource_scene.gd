@@ -1,5 +1,5 @@
 class_name ResourceScene
-extends Node
+extends Node2D
 
 
 var id : String setget , get_id

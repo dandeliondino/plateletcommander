@@ -1,5 +1,7 @@
 extends Node2D
 
+var wait_time_before_starting := 1.0
+
 var move_attempts := 0
 var max_move_attempts := 20
 var wait_time_if_stuck := 2.0
@@ -15,8 +17,7 @@ func _ready() -> void:
 	
 	if !Game.started:
 		yield(Events, "level_loaded")
-	yield(get_tree(), "idle_frame")
-	try_to_move()
+	timer.start(wait_time_before_starting)
 
 
 func _setup_timer() -> void:
@@ -26,6 +27,7 @@ func _setup_timer() -> void:
 	
 
 func try_to_move() -> void:
+	print("try_to_move()")
 	var target_cell = _get_next_target_cell()
 	if target_cell == Game.INVALID_CELL:
 		move_attempts += 1
