@@ -7,7 +7,7 @@ signal became_clotted
 var focus_material := preload("res://assets/materials/hover_outline.tres")
 var pressed_material := preload("res://assets/materials/pressed_outline.tres")
 
-
+export(Game.ENTITY) var group_id : int
 export(String) var ink_path := ""
 export(bool) var can_hover := false setget set_can_hover
 func set_can_hover(value : bool) -> void:
@@ -30,12 +30,6 @@ export(bool) var can_connect := false
 export(bool) var can_pick := false
 export(Game.POWERUP) var pick_data
 
-var group : String setget set_group
-func set_group(value : String) -> void:
-	if group:
-		self.remove_from_group(group)
-	group = value
-	self.add_to_group(value)
 
 
 export(float) var speed := 0.1
@@ -166,6 +160,9 @@ onready var control := $"%Control"
 
 func _ready() -> void:
 	add_to_group(Game.ENTITY_GROUP)
+	if group_id:
+		add_to_group(Game.ENTITY.keys()[group_id])
+	
 	control.connect("mouse_entered", self, "_on_mouse_entered")
 	control.connect("mouse_exited", self, "_on_mouse_exited")
 	control.connect("gui_input", self, "_on_input_event")
@@ -417,5 +414,5 @@ func _on_Events_entity_selected(entity) -> void:
 
 func _on_screen_exited() -> void:
 	Dprint.info("%s _on_screen_exited() -> queue_free()" % name, "ENTITY_MOVEMENT")
-	queue_free()
+	remove_from_map()
 

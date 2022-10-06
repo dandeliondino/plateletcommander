@@ -23,6 +23,7 @@ func change_level(level_id : String):
 	
 	next_level_id = level_id
 	previous_level_id = Game.current_level
+	Game.level_loaded = false
 	
 	Events.emit_signal("fade_to_black_requested")
 	Events.emit_signal("level_changing", Game.current_level, next_level_id)
@@ -61,6 +62,7 @@ func load_next_level():
 	
 	yield(next_level_node, "ready")
 	Game.started = true
+	Game.level_loaded = true
 	Events.emit_signal("game_state_change_requested", Game.states.WORLD)
 	Events.emit_signal("level_loaded")
 	Events.emit_signal("fade_to_game_requested")

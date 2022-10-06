@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/endothelium_half_damaged.png" type="Texture" id=1]
 [ext_resource path="res://entities/damaged_endothelium/damaged_endothelium_entity.gd" type="Script" id=2]
-[ext_resource path="res://entities/secretion_nodes/activation_powerup_secretor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://entities/spawners/activation_powerup_secretor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/connection_receiver.gd" type="Script" id=4]
 
 [node name="DamagedEndothelium" type="Node2D"]

@@ -10,6 +10,8 @@ onready var entity : Entity = get_parent()
 onready var timer := Timer.new()
 
 func _ready() -> void:
+	add_to_group(Game.PASSIVE_MOVER_GROUP)
+	
 	entity.connect("movement_completed", self, "_on_Entity_movement_completed") 
 	entity.connect("became_clotted", self, "_on_Entity_became_clotted")
 	
@@ -69,7 +71,6 @@ func _on_timer_timeout() -> void:
 
 
 func _on_Area2D_area_entered(area: Area2D) -> void:
-	pass
-#	if area.is_in_group(Game.OFF_SCREEN_GROUP):
-#		entity.remove_from_map()
+	if area.is_in_group(Game.OFF_MAP_AREA):
+		entity.remove_from_map()
 

@@ -12,7 +12,10 @@ enum states {PRELOAD, WORLD, MENU, ABOUT_MENU, CONFIRMATION_BOX}
 var state = states.PRELOAD
 var faded_to_black := false
 var started := false
+var level_loaded := false
 var current_level := ""
+
+var level
 
 var connections_made := 0
 var connections_upgraded := 0
@@ -21,7 +24,7 @@ var selected_entity = null
 
 # NODES
 var navmap
-var entity_container : Node2D
+
 var camera : Camera2D
 var camera_limits : ReferenceRect
 
@@ -36,13 +39,16 @@ var world
 
 
 # GROUPS
-# put group strings here
 const ENTITY_GROUP := "entities"
-const PLATELET_GROUP := "platelets"
-const POWERUP_GROUP := "powerups"
-const DAMAGED_ENDOTHELIUM_GROUP := "damaged_endothelium"
-const RBC_GROUP := "rbcs"
 const CONNECTION_GROUP := "connection_controls"
+
+const OFF_MAP_AREA := "off_map_areas"
+const PASSIVE_MOVER_GROUP := "passive_movers"
+
+# ENTITIES
+enum ENTITY {PLATELET, RBC, DAMAGED_ENDOTHELIUM, ACTIVATION_POTION, FIBRIN_POTION, XLINK_POTION}
+
+
 
 
 # CONSTANTS

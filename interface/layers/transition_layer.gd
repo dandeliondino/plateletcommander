@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var fade_to_game_color
 var fade_to_black_color
+var tween : SceneTreeTween
 
 onready var blackRect := $"%BlackRect"
 
@@ -23,7 +24,9 @@ func reset():
 
 func fade_to_black():
 	visible = true
-	var tween = create_tween()
+	if tween:
+		tween.kill()
+	tween = create_tween()
 	tween.tween_property(blackRect, "modulate", fade_to_black_color, Game.settings.fade_to_black_time)
 	yield(tween, "finished")
 	Game.faded_to_black = true
@@ -31,7 +34,9 @@ func fade_to_black():
 
 
 func fade_to_game():
-	var tween = create_tween()
+	if tween:
+		tween.kill()
+	tween = create_tween()
 	tween.tween_property(blackRect, "modulate", fade_to_game_color, Game.settings.fade_to_game_time)
 	yield(tween, "finished")
 	visible = false

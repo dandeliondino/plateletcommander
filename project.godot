@@ -74,11 +74,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/powerup/powerup_entity.gd"
 }, {
-"base": "Entity",
-"class": "RBC_Entity",
-"language": "GDScript",
-"path": "res://entities/rbc/rbc_entity.gd"
-}, {
 "base": "Node2D",
 "class": "ResourceScene",
 "language": "GDScript",
@@ -108,7 +103,6 @@ _global_script_class_icons={
 "PaletteImporter": "",
 "Platelet_Entity": "",
 "Powerup_Entity": "",
-"RBC_Entity": "",
 "ResourceScene": "",
 "Settings": "",
 "ViewportPositionConverter": ""
