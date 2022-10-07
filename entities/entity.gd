@@ -151,6 +151,8 @@ func set_clotted(value : bool) -> void:
 		emit_signal("became_clotted")
 
 # READY VARIABLES
+var passive_mover : Node2D
+
 var tween : SceneTreeTween
 
 onready var visibility_notifier := VisibilityNotifier2D.new()
@@ -293,9 +295,9 @@ func apply_powerup(id : int) -> void:
 	# override this function
 	pass
 
+
 func select() -> void:
 	Events.emit_signal("entity_selected", self)
-
 
 
 func update_cell() -> void:

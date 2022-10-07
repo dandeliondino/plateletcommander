@@ -193,8 +193,10 @@ func _update_from_cell(entity : Entity, from_cell : Vector2) -> void:
 		return
 		
 	occupied_cells.erase(from_cell)
-	astar_tilemap.enable_cell(from_cell)
-	set_cellv(from_cell, NAV_TILE)
+	
+	if from_cell in nav_cells:
+		astar_tilemap.enable_cell(from_cell)
+		set_cellv(from_cell, NAV_TILE)
 
 
 func _update_to_cell(entity : Entity, to_cell : Vector2) -> void:
@@ -209,8 +211,9 @@ func _update_to_cell(entity : Entity, to_cell : Vector2) -> void:
 		return
 		
 	occupied_cells[to_cell] = entity
-	astar_tilemap.disable_cell(to_cell)
-	set_cellv(to_cell, OCCUPIED_TILE)
+	if to_cell in nav_cells:
+		astar_tilemap.disable_cell(to_cell)
+		set_cellv(to_cell, OCCUPIED_TILE)
 
 
 func _update_nav_map() -> void:	

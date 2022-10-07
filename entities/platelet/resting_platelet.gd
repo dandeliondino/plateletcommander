@@ -9,4 +9,10 @@ func apply_powerup(id : int) -> void:
 	
 	replace_with(ActivatedPlatelet)
 	
-	
+func _on_selected() -> void:
+	if is_instance_valid(passive_mover):
+		passive_mover.pause()
+
+func _on_deselected() -> void:
+	if is_instance_valid(passive_mover):
+		passive_mover.unpause()

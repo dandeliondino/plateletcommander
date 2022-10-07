@@ -19,7 +19,7 @@ var categories := {
 	"INTERACTION_STATE": false,
 	"EVENT": true,
 	"NEIGHBOR": false,
-	"ENTITY_MOVEMENT": true,
+	"ENTITY_MOVEMENT": false,
 }
 
 func error(msg, category = unassigned_category):

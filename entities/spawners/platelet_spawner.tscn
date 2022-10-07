@@ -2,10 +2,8 @@
 
 [ext_resource path="res://entities/spawners/entity_spawner.tscn" type="PackedScene" id=1]
 
-[node name="RBCSpawner" instance=ExtResource( 1 )]
-entity_id = 1
-entity_to_secrete_path = "res://entities/rbc/rbc.tscn"
-max_time = 10.0
+[node name="PlateletSpawner" instance=ExtResource( 1 )]
+entity_to_secrete_path = "res://entities/platelet/platelet.tscn"
 can_spawn_left = false
 can_spawn_up_left = false
 can_spawn_up = false
