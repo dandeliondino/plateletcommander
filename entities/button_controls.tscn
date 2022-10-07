@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://entities/platelet/button_controls.gd" type="Script" id=1]
+[ext_resource path="res://entities/button_controls.gd" type="Script" id=1]
 [ext_resource path="res://assets/controls/button_question_normal.png" type="Texture" id=2]
 
 [node name="ButtonControls" type="Control"]

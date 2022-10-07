@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var wait_time_before_starting := 1.0
 
 var move_attempts := 0
@@ -11,22 +12,25 @@ var pause_time := 5.0
 var paused := false
 
 
-onready var entity : Entity = get_parent()
+onready var entity : Node2D
 onready var timer := Timer.new()
 onready var pause_timer : SceneTreeTimer
 
+
 func _ready() -> void:
 	add_to_group(Game.PASSIVE_MOVER_GROUP)
-	entity.passive_mover = self
-	
-	entity.connect("movement_completed", self, "_on_Entity_movement_completed") 
-	entity.connect("became_clotted", self, "_on_Entity_became_clotted")
 	
 	_setup_timer()
 	
 	if !Game.started:
 		yield(Events, "level_loaded")
 	timer.start(wait_time_before_starting)
+
+
+func setup(entity_value) -> void:
+	entity = entity_value
+	entity.connect("movement_completed", self, "_on_Entity_movement_completed") 
+	entity.connect("became_clotted", self, "_on_Entity_became_clotted")
 
 
 func _setup_timer() -> void:

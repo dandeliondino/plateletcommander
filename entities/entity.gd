@@ -7,8 +7,11 @@ signal became_clotted
 var focus_material := preload("res://assets/materials/hover_outline.tres")
 var pressed_material := preload("res://assets/materials/pressed_outline.tres")
 
-var ButtonControls := preload("res://entities/platelet/button_controls.tscn")
-var buttonControls : Node
+var ButtonControls := preload("res://entities/button_controls.tscn")
+var button_controls : Node
+
+var PassiveMover := preload("res://entities/passive_mover.tscn")
+var passive_mover : Node
 
 export(Game.ENTITY) var group_id : int
 export(String) var ink_path := ""
@@ -29,7 +32,11 @@ func set_can_select(value : bool) -> void:
 		Events.disconnect("entity_selected", self, "_on_Events_entity_selected")
 
 export(bool) var can_move := false
+export(bool) var can_move_passively := false
 export(bool) var can_connect := false
+export(bool) var can_receive_connection := false
+export(bool) var can_upgrade := false
+export(bool) var can_activate := false
 export(bool) var can_pick := false
 export(Game.POWERUP) var pick_data
 
@@ -126,10 +133,19 @@ func set_selected(value : bool) -> void:
 		return
 	selected = value
 	if value == true:
+		get_parent().move_child(self, get_parent().get_child_count()-1)
 		_set_sprite_outline_pressed()
+		if is_instance_valid(passive_mover):
+			passive_mover.pause()
+		if is_instance_valid(button_controls):
+			button_controls.show_controls()
 		_on_selected()
 	else:
 		_reset_sprite_outline()
+		if is_instance_valid(passive_mover):
+			passive_mover.unpause()
+		if is_instance_valid(button_controls):
+			button_controls.hide()
 		_on_deselected()
 
 
@@ -154,49 +170,66 @@ func set_clotted(value : bool) -> void:
 		emit_signal("became_clotted")
 
 # READY VARIABLES
-var passive_mover : Node2D
-
 var tween : SceneTreeTween
 
-onready var visibility_notifier := VisibilityNotifier2D.new()
 onready var sprite := $"%Sprite"
-onready var control := $"%Control"
+var input_control : Control
 
 
 func _ready() -> void:
-	hide()
+	hide() # may flash in at corner of screen
 	
+	_setup_groups()
+	_setup_components()
+	
+	if !Game.level_loaded:
+		yield(Events, "level_loaded")
+	
+	_update_initial_position()
+	
+	show()
+
+
+func _setup_groups() -> void:
 	add_to_group(Game.ENTITY_GROUP)
 	if group_id:
 		add_to_group(Game.ENTITY.keys()[group_id])
-	
+
+
+func _setup_components() -> void:
+	if can_select or can_hover:
+		input_control = _add_input_control()
+	if can_select:
+		button_controls = _add_component(ButtonControls)
+		button_controls.setup(self, group_id)
+	if can_move_passively:
+		passive_mover = _add_component(PassiveMover)
+		passive_mover.setup(self)
+
+
+func _add_input_control() -> Control:
+	var control = Control.new()
+	add_child(control)
 	control.connect("mouse_entered", self, "_on_mouse_entered")
 	control.connect("mouse_exited", self, "_on_mouse_exited")
 	control.connect("gui_input", self, "_on_input_event")
-	
-	add_child(visibility_notifier)
-	visibility_notifier.connect("screen_exited", self, "_on_screen_exited")
-	
-	buttonControls = ButtonControls.instance()
-	add_child(buttonControls)
-	buttonControls.setup_controls(group_id)
-	
 	control.rect_size = Vector2(32, 32)
-	control.rect_position = Vector2(-16, -16)
-	
-	if !Game.started:
-		yield(Events, "level_loaded")
-	elif Game.state != Game.states.WORLD:
-		yield(Events, "game_state_changed")
-	else:
-		yield(get_tree(),"idle_frame")
-	
+	control.rect_position = Vector2(-16, -16) 
+	return control
+
+
+func _add_component(component : PackedScene) -> Node:
+	var component_instance := component.instance()
+	add_child(component_instance)
+	return component_instance
+
+
+func _update_initial_position() -> void:
 	if cell:
 		global_position = Game.navmap.get_position_at_cell(cell)
 	else:
 		update_cell()
-	
-	show()
+
 
 func _on_focus_gained() -> void:
 	# override this function

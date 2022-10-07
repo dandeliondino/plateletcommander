@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/sprites/rbc_animation.png" type="Texture" id=1]
 [ext_resource path="res://entities/entity.gd" type="Script" id=2]
-[ext_resource path="res://entities/passive_mover.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/connection_receiver.gd" type="Script" id=4]
 
 [node name="RBC" type="Node2D"]
@@ -10,7 +9,9 @@ script = ExtResource( 2 )
 group_id = 2
 ink_path = "rbc"
 can_hover = true
-can_connect = true
+can_select = true
+can_move_passively = true
+can_receive_connection = true
 _can_connect_left = true
 _can_connect_up_left = true
 _can_connect_up = true
@@ -32,5 +33,3 @@ margin_top = -16.0
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 4 )
-
-[node name="PassiveMover" parent="." instance=ExtResource( 3 )]

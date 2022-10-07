@@ -10,7 +10,8 @@ script = ExtResource( 2 )
 group_id = 3
 ink_path = "damaged_endothelium"
 can_hover = true
-can_connect = true
+can_select = true
+can_receive_connection = true
 
 [node name="Sprite" type="Sprite" parent="."]
 unique_name_in_owner = true
