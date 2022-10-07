@@ -103,31 +103,132 @@ margin_bottom = 26.0
 size_flags_vertical = 0
 text = "Menu"
 
-[node name="ScoreContainer" type="HBoxContainer" parent="HUDLayer"]
-anchor_left = 1.0
+[node name="PlateletCommander" parent="HUDLayer" instance=ExtResource( 21 )]
+
+[node name="BottomPanel" type="MarginContainer" parent="HUDLayer"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -221.0
-margin_top = -40.0
-mouse_filter = 2
-custom_constants/separation = 12
+margin_top = -66.0
+custom_constants/margin_right = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="VBoxContainer" parent="HUDLayer/ScoreContainer"]
-margin_right = 94.0
+[node name="PanelContainer" type="PanelContainer" parent="HUDLayer/BottomPanel"]
+margin_left = 8.0
+margin_right = 632.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 64, 32 )
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/BottomPanel/PanelContainer"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 617.0
+margin_bottom = 56.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer"]
+margin_right = 611.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="InventorySlotContainer" type="HBoxContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_right = 201.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="ActivateButton" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/InventorySlotContainer" instance=ExtResource( 25 )]
+margin_left = 29.0
+margin_right = 74.0
+margin_bottom = 50.0
+powerup_texture = ExtResource( 19 )
+ink_path = "activation_potion"
+
+[node name="FibrinButton" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/InventorySlotContainer" instance=ExtResource( 25 )]
+margin_left = 78.0
+margin_right = 123.0
+margin_bottom = 50.0
+powerup_id = 1
+powerup_texture = ExtResource( 17 )
+ink_path = "fibrin_potion"
+
+[node name="XLinkButton" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/InventorySlotContainer" instance=ExtResource( 25 )]
+margin_left = 127.0
+margin_right = 172.0
+margin_bottom = 50.0
+powerup_id = 2
+powerup_texture = ExtResource( 24 )
+ink_path = "xlink_potion"
+
+[node name="TooltipContainer" type="PanelContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 205.0
+margin_right = 406.0
+margin_bottom = 50.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 30 )
+script = ExtResource( 16 )
+
+[node name="Tooltip" type="MarginContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/TooltipContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 196.0
+margin_bottom = 45.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+
+[node name="TooltipLabel" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/TooltipContainer/Tooltip" instance=ExtResource( 29 )]
+margin_left = 4.0
+margin_right = 187.0
+margin_bottom = 40.0
+bbcode_text = "Platelet - an important cell"
+text = "Platelet - an important cell"
+
+[node name="ScoreContainer" type="HBoxContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer"]
+margin_left = 410.0
+margin_right = 611.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer"]
+margin_left = 16.0
+margin_right = 98.0
+margin_bottom = 50.0
+theme_type_variation = "InsetPanelContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 72, 0 )
+custom_constants/margin_right = 2
+custom_constants/margin_left = 2
+
+[node name="ScoreConnectionsContainer" type="VBoxContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer/MarginContainer"]
+margin_left = 2.0
+margin_right = 70.0
 margin_bottom = 40.0
 mouse_filter = 2
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer"]
-margin_right = 94.0
+[node name="Label" type="Label" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer/MarginContainer/ScoreConnectionsContainer"]
+margin_right = 68.0
 margin_bottom = 13.0
-text = "Connections Made:"
+text = "Connections:"
+align = 1
 
-[node name="TotalConnectionsLabel" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer"]
+[node name="TotalConnectionsLabel" type="Label" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer/MarginContainer/ScoreConnectionsContainer"]
 unique_name_in_owner = true
 margin_top = 13.0
-margin_right = 94.0
+margin_right = 68.0
 margin_bottom = 40.0
 theme_type_variation = "menuheader"
 custom_colors/font_color = Color( 0.745098, 0.14902, 0.2, 1 )
@@ -137,22 +238,38 @@ custom_fonts/font = ExtResource( 28 )
 text = "150"
 align = 1
 
-[node name="HBoxContainer2" type="VBoxContainer" parent="HUDLayer/ScoreContainer"]
-margin_left = 106.0
-margin_right = 221.0
+[node name="PanelContainer3" type="PanelContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer"]
+margin_left = 102.0
+margin_right = 184.0
+margin_bottom = 50.0
+theme_type_variation = "InsetPanelContainer"
+
+[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer3"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 72, 0 )
+custom_constants/margin_right = 2
+custom_constants/margin_left = 2
+
+[node name="ScoreUpgradesContainer" type="VBoxContainer" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer3/MarginContainer"]
+margin_left = 2.0
+margin_right = 70.0
 margin_bottom = 40.0
 mouse_filter = 2
 custom_constants/separation = 0
 
-[node name="Label2" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer2"]
-margin_right = 115.0
+[node name="Label2" type="Label" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer3/MarginContainer/ScoreUpgradesContainer"]
+margin_right = 68.0
 margin_bottom = 13.0
-text = "Connections Upgraded:"
+text = "Upgrades:"
+align = 1
 
-[node name="ConnectionsUpgradedLabel" type="Label" parent="HUDLayer/ScoreContainer/HBoxContainer2"]
+[node name="ConnectionsUpgradedLabel" type="Label" parent="HUDLayer/BottomPanel/PanelContainer/MarginContainer/HBoxContainer/ScoreContainer/PanelContainer3/MarginContainer/ScoreUpgradesContainer"]
 unique_name_in_owner = true
 margin_top = 13.0
-margin_right = 115.0
+margin_right = 68.0
 margin_bottom = 40.0
 theme_type_variation = "menuheader"
 custom_colors/font_color = Color( 0.745098, 0.14902, 0.2, 1 )
@@ -164,79 +281,6 @@ align = 1
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="PlateletCommander" parent="HUDLayer" instance=ExtResource( 21 )]
-
-[node name="InventoryContainer" type="MarginContainer" parent="HUDLayer"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -70.0
-margin_right = 156.0
-custom_constants/margin_bottom = 12
-
-[node name="PanelContainer" type="PanelContainer" parent="HUDLayer/InventoryContainer"]
-margin_right = 360.0
-margin_bottom = 58.0
-rect_min_size = Vector2( 64, 32 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="HUDLayer/InventoryContainer/PanelContainer"]
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 353.0
-margin_bottom = 51.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer"]
-margin_right = 347.0
-margin_bottom = 45.0
-size_flags_horizontal = 3
-
-[node name="ActivateButton" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
-powerup_texture = ExtResource( 19 )
-ink_path = "activation_potion"
-
-[node name="FibrinButton" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
-margin_left = 49.0
-margin_right = 94.0
-powerup_id = 1
-powerup_texture = ExtResource( 17 )
-ink_path = "fibrin_potion"
-
-[node name="XLinkButton" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer" instance=ExtResource( 25 )]
-margin_left = 98.0
-margin_right = 143.0
-powerup_id = 2
-powerup_texture = ExtResource( 24 )
-ink_path = "xlink_potion"
-
-[node name="TooltipContainer" type="PanelContainer" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer"]
-margin_left = 147.0
-margin_right = 347.0
-margin_bottom = 45.0
-rect_min_size = Vector2( 200, 0 )
-mouse_filter = 2
-custom_styles/panel = ExtResource( 30 )
-script = ExtResource( 16 )
-
-[node name="Tooltip" type="MarginContainer" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer/TooltipContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 195.0
-margin_bottom = 40.0
-rect_clip_content = true
-mouse_filter = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/margin_right = 4
-custom_constants/margin_left = 4
-
-[node name="TooltipLabel" parent="HUDLayer/InventoryContainer/PanelContainer/MarginContainer/HBoxContainer/TooltipContainer/Tooltip" instance=ExtResource( 29 )]
-margin_left = 4.0
-margin_right = 186.0
-margin_bottom = 35.0
-bbcode_text = "Platelet - an important cell"
-text = "Platelet - an important cell"
 
 [node name="MoreInfoContainer" type="Control" parent="HUDLayer"]
 anchor_right = 1.0
