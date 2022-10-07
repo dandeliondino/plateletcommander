@@ -12,6 +12,7 @@
 
 [node name="ActivatedPlatelet" type="Node2D"]
 script = ExtResource( 2 )
+group_id = 1
 ink_path = "activated_platelet"
 can_hover = true
 can_select = true

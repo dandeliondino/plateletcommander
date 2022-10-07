@@ -7,6 +7,9 @@ signal became_clotted
 var focus_material := preload("res://assets/materials/hover_outline.tres")
 var pressed_material := preload("res://assets/materials/pressed_outline.tres")
 
+var ButtonControls := preload("res://entities/platelet/button_controls.tscn")
+var buttonControls : Node
+
 export(Game.ENTITY) var group_id : int
 export(String) var ink_path := ""
 export(bool) var can_hover := false setget set_can_hover
@@ -112,7 +115,7 @@ func set_focused(value : bool) -> void:
 		_on_focus_gained()
 	else:
 		_reset_sprite_outline()
-		Game.tooltip.hide_immediately(self)
+		Game.tooltip.hide_tooltip(self)
 		Events.emit_signal("entity_focus_lost", self)
 		_on_focus_lost()
 
@@ -161,6 +164,8 @@ onready var control := $"%Control"
 
 
 func _ready() -> void:
+	hide()
+	
 	add_to_group(Game.ENTITY_GROUP)
 	if group_id:
 		add_to_group(Game.ENTITY.keys()[group_id])
@@ -171,6 +176,10 @@ func _ready() -> void:
 	
 	add_child(visibility_notifier)
 	visibility_notifier.connect("screen_exited", self, "_on_screen_exited")
+	
+	buttonControls = ButtonControls.instance()
+	add_child(buttonControls)
+	buttonControls.setup_controls(group_id)
 	
 	control.rect_size = Vector2(32, 32)
 	control.rect_position = Vector2(-16, -16)
@@ -186,7 +195,8 @@ func _ready() -> void:
 		global_position = Game.navmap.get_position_at_cell(cell)
 	else:
 		update_cell()
-
+	
+	show()
 
 func _on_focus_gained() -> void:
 	# override this function
@@ -310,10 +320,17 @@ func remove_from_map() -> void:
 
 
 func replace_with(packed_scene) -> void:
-	var new_entity = packed_scene.instance()
-	new_entity.global_position = global_position
-	Game.entity_container.add_child(new_entity)
+	if Game.selected_entity == self:
+		Events.emit_signal("entity_selected", null)
+	var target_cell = cell
 	remove_from_map()
+	
+	var new_entity = packed_scene.instance()
+	new_entity.cell = target_cell
+	var container = Game.level.entity_spawns[group_id].container
+	
+	container.add_child(new_entity)
+	
 
 
 
@@ -337,7 +354,7 @@ func move_to_cell_immediately(target_cell : Vector2) -> void:
 	if tween:
 		tween.kill()
 	self.cell = target_cell
-	print("navmap pos: %s" % Game.navmap.get_position_at_cell(target_cell))
+#	print("navmap pos: %s" % Game.navmap.get_position_at_cell(target_cell))
 	global_position = Game.navmap.get_position_at_cell(target_cell)
 
 
@@ -396,20 +413,17 @@ func _on_mouse_exited() -> void:
 
 
 func _on_input_event(event: InputEvent) -> void:
-	if Utils.event_is_right_click(event):
-		if ink_path:
-			Events.emit_signal("more_info_panel_requested", ink_path)
+	if Game.input_state_movement:
+		return
 
 	elif Utils.event_is_left_click(event):
 #		print("left click")
-		if can_select && can_move:
-			if self.selected:
-				Events.emit_signal("entity_selected", null)
-			else:
-				select()
+		if can_select:
+			select()
 		if can_pick:
 #			print("can pick")
 			pick()
+			Events.emit_signal("entity_selected", null)
 
 func _on_Events_entity_selected(entity) -> void:
 	self.selected = (entity == self)

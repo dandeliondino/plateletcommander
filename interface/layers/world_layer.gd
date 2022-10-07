@@ -10,6 +10,7 @@ func _set_interaction_state(value : int) -> void:
 	_update_interaction_state(from_state, value)
 
 
+
 var prev_mouse_cell : Vector2
 var mouse_cell : Vector2 setget set_mouse_cell
 func set_mouse_cell(value : Vector2) -> void:
@@ -35,6 +36,7 @@ onready var world := $"%World"
 func _ready() -> void:
 	Game.world = world
 	Events.connect("entity_selected", self, "_on_Events_entity_selected")
+	Events.connect("move_state_requested", self, "_on_Events_move_state_requested")
 	
 
 func _input(event: InputEvent) -> void:	
@@ -46,11 +48,15 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if Utils.event_is_left_click(event):
-		_mouse_press(event)
+		if Game.input_state_movement:
+			_mouse_press(event)
+		else:
+			return
 	elif Utils.event_is_right_click(event):
 		_deselect_entity()
 	elif Utils.event_is_mouse_move(event):
-		_mouse_move(event)
+		if Game.input_state_movement:
+			_mouse_move(event)
 		
 
 func _mouse_press(event: InputEvent) -> void:	
@@ -109,13 +115,14 @@ func _update_interaction_state(from_state : int, to_state : int) -> void:
 func _get_mouse_cell() -> Vector2:
 	return Game.navmap.get_cell_at_position(Game.navmap.get_global_mouse_position())
 
+
 func _deselect_entity() -> void:
 	Events.emit_signal("entity_selected", null)
 	self._interaction_state = _interaction_states.NONE
 
 
 func _remove_entity_connections(entity : Entity) -> void:
-	if !Game.selected_entity:
+	if !Game.selected_entity or !is_instance_valid(Game.selected_entity):
 		return
 		
 	if Game.selected_entity.is_connected("movement_completed", self, "_on_Entity_movement_completed"):
@@ -129,5 +136,8 @@ func _on_Events_entity_selected(entity) -> void:
 	
 	_remove_entity_connections(Game.selected_entity)
 	Game.selected_entity = entity
+	Game.input_state_movement = false
 
 
+func _on_Events_move_state_requested() -> void:
+	Game.input_state_movement = true

@@ -22,6 +22,8 @@ var connections_upgraded := 0
 
 var selected_entity = null
 
+var input_state_movement := false
+
 # NODES
 var navmap
 
@@ -46,7 +48,8 @@ const OFF_MAP_AREA := "off_map_areas"
 const PASSIVE_MOVER_GROUP := "passive_movers"
 
 # ENTITIES
-enum ENTITY {PLATELET, RBC, DAMAGED_ENDOTHELIUM, ACTIVATION_POTION, FIBRIN_POTION, XLINK_POTION}
+# IMPORTANT: ONLY ADD TO END OF LIST
+enum ENTITY {PLATELET, ACTIVATED_PLATELET, RBC, DAMAGED_ENDOTHELIUM, ACTIVATION_POTION, FIBRIN_POTION, XLINK_POTION}
 
 
 

@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/sprites/fibrin_potion.png" type="Texture" id=2]
 
 [node name="FibrinPowerUp" instance=ExtResource( 1 )]
+group_id = 5
 ink_path = "fibrin_potion"
 pick_data = 1
 

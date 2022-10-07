@@ -7,7 +7,7 @@
 
 [node name="RBC" type="Node2D"]
 script = ExtResource( 2 )
-group_id = 1
+group_id = 2
 ink_path = "rbc"
 can_hover = true
 can_connect = true

@@ -65,9 +65,9 @@ _global_script_classes=[ {
 "path": "res://addons/color-palette/PaletteImporter.gd"
 }, {
 "base": "Entity",
-"class": "Platelet_Entity",
+"class": "Platelet",
 "language": "GDScript",
-"path": "res://entities/platelet/platelet_entity.gd"
+"path": "res://entities/platelet/platelet.gd"
 }, {
 "base": "Entity",
 "class": "Powerup_Entity",
@@ -101,7 +101,7 @@ _global_script_class_icons={
 "NavMap": "",
 "Palette": "",
 "PaletteImporter": "",
-"Platelet_Entity": "",
+"Platelet": "",
 "Powerup_Entity": "",
 "ResourceScene": "",
 "Settings": "",

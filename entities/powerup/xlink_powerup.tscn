@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/sprites/factor_potion.png" type="Texture" id=2]
 
 [node name="XLinkPowerup" instance=ExtResource( 1 )]
+group_id = 6
 ink_path = "xlink_potion"
 pick_data = 2
 

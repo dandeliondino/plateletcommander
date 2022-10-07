@@ -21,6 +21,8 @@ signal game_state_exit_requested
 signal game_state_change_requested(value)
 signal game_state_changed(from_value, to_value)
 
+signal move_state_requested
+
 # Menus/Panels
 signal main_menu_requested
 # put panel requests here
@@ -38,7 +40,7 @@ signal entity_focus_gained(entity)
 signal entity_focus_lost(entity)
 signal entity_cell_changed(entity, from_cell, to_cell)
 
-
+signal apply_powerup_requested(id)
 signal powerup_used(id)
 signal powerup_added(id)
 signal powerup_count_refresh_requested

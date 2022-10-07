@@ -32,8 +32,8 @@ func _ready() -> void:
 	
 	if !Game.level_loaded:
 		yield(Events, "level_loaded")
-	entity_container = Game.level.entity_spawns[entity_id].container
-		
+	entity_container = Game.level.get_entity_container(entity_id)
+	
 	if active:
 		_start_timer()
 

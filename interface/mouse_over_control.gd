@@ -18,4 +18,4 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
-	Game.tooltip.hide_immediately(self)
+	Game.tooltip.hide_tooltip(self)

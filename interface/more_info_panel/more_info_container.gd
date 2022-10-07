@@ -7,7 +7,7 @@ func _ready() -> void:
 	moreInfoPanel.hide()
 
 func show_more_info_panel(path : String) -> void:
-	Game.tooltip.hide_immediately()
+	Game.tooltip.hide_tooltip()
 	var title : String = Game.ink_manager.get_text(path + ".more_info_title")
 	var text : String = Game.ink_manager.get_text(path + ".more_info")
 	text = text.replace("\n", "\n\n")

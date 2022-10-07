@@ -25,6 +25,7 @@ onready var entity_spawns := {
 	},
 }
 
+onready var genericEntityContainer := $"%EntityContainer"
 
 onready var default_width = ProjectSettings.get_setting("display/window/size/width")
 onready var default_height = ProjectSettings.get_setting("display/window/size/height")
@@ -63,6 +64,13 @@ func center_level() -> void:
 	Events.emit_signal("fade_to_game_requested")
 	yield(Events, "faded_to_game")
 	get_tree().paused = false
+
+
+func get_entity_container(entity_id) -> Node:
+	if entity_id in entity_spawns.keys():
+		if "container" in entity_spawns[entity_id]:
+			return entity_spawns[entity_id].container
+	return genericEntityContainer
 
 
 func _on_World_resized() -> void:
